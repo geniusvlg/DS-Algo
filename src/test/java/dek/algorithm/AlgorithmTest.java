@@ -7,8 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class AlgorithmTest {
 
     @Test
-    public void splitSetTest() {
+    public void twoPointersTest() {
 
-
+        Algorithm algorithm = Algorithm.Algorithm("middleNode");
+        algorithm.getLinkedList().addToTop(1);
+        algorithm.getLinkedList().addToTop(2);
+        algorithm.getLinkedList().addToBottom(5);
+        algorithm.getLinkedList().printLinkedList();
     }
 }

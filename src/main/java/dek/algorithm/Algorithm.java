@@ -10,7 +10,7 @@ public class Algorithm {
         linkedList = factory.createLinkedListAlgorithm(type);
     }
 
-    public Algorithm Algorithm(String type) {
+    public static Algorithm Algorithm(String type) {
         if(algorithm == null) {
             algorithm = new Algorithm(type);
         } else {
@@ -20,5 +20,11 @@ public class Algorithm {
         return algorithm;
     }
 
-    
+    public void addToTop(int value) {
+        linkedList.addToTop(value);
+    }
+
+    public LinkedList getLinkedList() {
+        return this.linkedList;
+    }
 }
