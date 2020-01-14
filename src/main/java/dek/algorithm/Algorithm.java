@@ -4,27 +4,20 @@ public class Algorithm {
 
     private static Algorithm algorithm = null;
     private static AlgorithmFactory factory;
-    private static LinkedList linkedList;
+    private static SlidingWindow slidingWindow;
 
-    private Algorithm(String type) {
-        linkedList = factory.createLinkedListAlgorithm(type);
+    private Algorithm() {
+        slidingWindow = factory.createLinkedListAlgorithm();
     }
 
     public static Algorithm Algorithm(String type) {
         if(algorithm == null) {
-            algorithm = new Algorithm(type);
+            algorithm = new Algorithm();
         } else {
-            linkedList = factory.createLinkedListAlgorithm(type);
+            slidingWindow = factory.createLinkedListAlgorithm();
         }
 
         return algorithm;
     }
 
-    public void addToTop(int value) {
-        linkedList.addToTop(value);
-    }
-
-    public LinkedList getLinkedList() {
-        return this.linkedList;
-    }
 }
