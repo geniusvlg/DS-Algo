@@ -20,4 +20,7 @@ public class Algorithm {
         return algorithm;
     }
 
+    public SlidingWindow getSlidingWindow() {
+        return slidingWindow;
+    }
 }
