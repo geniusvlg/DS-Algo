@@ -4,9 +4,23 @@ import java.util.*;
 
 public class SlidingWindow {
 
-    public ArrayList findTwoSum(int[] set, int target) {
+    public int[] findTwoSum(int[] set, int target) {
+        if(set == null || set.length == 0)
+            return null;
 
-       return null;
+        int[] res = new int[2];
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for(int i = 0; i < set.length; ++i) {
+            int remain = target - set[i];
+            if(!map.containsKey(remain)) {
+                map.put(set[i], i + 1);
+            } else {
+                res[0] = map.get(remain);
+                res[1] = i + 1;
+            }
+        }
+
+       return res;
     }
 
     public int minSubArrayBiggerOrEqualsK(int s, int[] nums) {

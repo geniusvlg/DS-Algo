@@ -57,8 +57,8 @@ public class SlidingWindowTest {
         int[] numbers = {2, 7, 11, 15, 16 ,27, 36};
         int target = 34;
 
-        assertEquals(algorithm.getSlidingWindow().findTwoSum(numbers, target).get(0), 2);
-        assertEquals(algorithm.getSlidingWindow().findTwoSum(numbers, target).get(1), 6);
+        assertEquals(algorithm.getSlidingWindow().findTwoSum(numbers, target)[0], 2);
+        assertEquals(algorithm.getSlidingWindow().findTwoSum(numbers, target)[1], 6);
 
     }
 
