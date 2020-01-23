@@ -1,9 +1,10 @@
-package dek.algorithm;
+package dek.algorithm.two_pointers;
 
+import dek.algorithm.Algorithm;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SlidingWindowTest {
+public class SlidingWindow {
 
     private SlidingWindow slidingWindow = new SlidingWindow();
 
@@ -126,28 +127,6 @@ public class SlidingWindowTest {
 
         String string2 = "bbbbb";
         assertEquals(algorithm.getSlidingWindow().longestSubstringWithoutRepeating(string2), 1);
-    }
-
-    @Test
-    public void pairsWithGivenSumTest() {
-        Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
-
-        int[] arr = {1, 5, 7, -1};
-        int k = 6;
-        assertEquals(algorithm.getSlidingWindow().pairsWithGivenSumSlidingWindow(k, arr), 2);
-
-        int[] arr2 = {1, 5, 7, -1, 5};
-        k = 6;
-        assertEquals(algorithm.getSlidingWindow().pairsWithGivenSumSlidingWindow(k, arr2), 3);
-
-        int[] arr3 = {3, -1, 4, -2};
-        k = 2;
-        assertEquals(algorithm.getSlidingWindow().pairsWithGivenSumSlidingWindow(k, arr3), 2);
-
-        int[] arr4 = {10, 12, 13, 15, -1, 7, 6,
-                5, 4, 2, -2, -4, 1};
-        k = 11;
-        assertEquals(algorithm.getSlidingWindow().pairsWithGivenSumSlidingWindow(k, arr4), 6);
     }
 
     @Test

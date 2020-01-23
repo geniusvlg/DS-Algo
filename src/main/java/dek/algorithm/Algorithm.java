@@ -1,5 +1,7 @@
 package dek.algorithm;
 
+import dek.algorithm.two_pointers.SlidingWindow;
+
 public class Algorithm {
 
     private static Algorithm algorithm = null;
