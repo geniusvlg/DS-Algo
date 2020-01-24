@@ -4,15 +4,15 @@ import dek.algorithm.Algorithm;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SlidingWindow {
-
-    private SlidingWindow slidingWindow = new SlidingWindow();
+public class SlidingWindowTest {
+    SlidingWindow slidingWindow = new SlidingWindow();
 
     @Test
     public void longestSubstringWithoutRepeatingTest() {
 
         String a = "GEEKSFORGEEKS";
-        assertEquals(slidingWindow.longestSubstringWithoutRepeating(a), "EKSFORG".length());
+        assertEquals(slidingWindow.longestSubstringWithoutRepeating(a),
+                "EKSFORG".length());
 
         String b = "ABDEFGABEF";
         assertEquals(slidingWindow.longestSubstringWithoutRepeating(b), "BDEFGA".length());
@@ -63,29 +63,45 @@ public class SlidingWindow {
 
     }
 
+    /** Given an array of n positive integers and a positive integer s, find the
+     minimal length of a contiguous subarray of which the sum > s
+     */
+
     @Test
     public void findOptimalSubArrayTest() {
-
-        /** Given an array of n positive integers and a positive integer s, find the
-         minimal length of a contiguous subarray of which the sum >= s
-         */
-
         Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
 
         int s = 7;
         int[] nums = {2, 3, 1, 2 ,4, 3};
-        int[] actual = {3, 4};
-
+        int[] actual = {2, 4, 3};
         assertEquals(algorithm.getSlidingWindow().minSubArrayBiggerOrEqualsK(s, nums), actual.length);
 
+        s = 51;
+        int[] nums_2 = {1, 4, 45, 6, 0, 19};
+        int[] actual_2 = {4, 5, 6};
+        assertEquals(algorithm.getSlidingWindow().minSubArrayBiggerOrEqualsK(s, nums_2), actual_2.length);
+
+        s = 9;
+        int[] nums_3 = {1, 10, 5, 2, 7};
+        int[] actual_3 = {10};
+        assertEquals(algorithm.getSlidingWindow().minSubArrayBiggerOrEqualsK(s, nums_3), actual_3.length);
+
+        s = 280;
+        int[] nums_4 = {1, 11, 100, 1, 0, 200, 3, 2, 1, 250};
+        int[] actual_4 = {100, 1, 0, 200};
+        assertEquals(algorithm.getSlidingWindow().minSubArrayBiggerOrEqualsK(s, nums_4), actual_4.length);
+
+        s = 8;
+        int[] nums_5 = {1, 2, 4};
+        int[] actual_5 = {};
+        assertEquals(algorithm.getSlidingWindow().minSubArrayBiggerOrEqualsK(s, nums_5), actual_5.length);
     }
 
+    /** Given an array nums and target value k, find the maximum length of a subarray that sums to k.
+     If there isn’t one, return 0 instead.
+     **/
     @Test
     public void maxSubArrayEqualsKTest() {
-        /** Given an array nums and target value k, find the maximum length of a subarray that sums to k.
-         If there isn’t one, return 0 instead.
-         **/
-
         Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
         int k = 3;
         int[] nums = {1, -1, 5, -2, 3};
@@ -101,6 +117,9 @@ public class SlidingWindow {
 
     }
 
+    /**
+     * FInd the longest contiguous increasing subarray (not equal)
+     */
     @Test
     public void longestContiguousIncreasingSubarrayTest() {
         Algorithm algorithm = Algorithm.Algorithm("slidingWindow");

@@ -4,6 +4,13 @@ import java.util.*;
 
 public class SlidingWindow {
 
+    public void printResult(int startIndex, int length, int[] nums) {
+        for(int i = 0; i < length; ++i)
+            System.out.println(nums[i + startIndex]);
+
+        System.out.println("\n");
+    }
+
     public int[] findTwoSum(int[] set, int target) {
         if(set == null || set.length == 0)
             return null;
@@ -23,25 +30,28 @@ public class SlidingWindow {
        return res;
     }
 
-    /**
-     * Minimum subarray with sum bigger or equal than K
-     * @param s
-     * @param nums
-     * @return
-     */
     public int minSubArrayBiggerOrEqualsK(int s, int[] nums) {
         if(nums == null || nums.length == 0) {
             return 0;
         }
 
-        int i , j, min;
-        i = j= 0;
+        Integer i , j, min, acc;
+        i = j = acc = 0;
         min = Integer.MAX_VALUE;
         while(j < nums.length) {
-            
+            acc += nums[j];
+            while(acc > s) {
+                min = Math.min(min, j - i + 1);
+                acc -= nums[i];
+                i ++;
+            }
+            j ++;
         }
 
-        return 1;
+        if(min == Integer.MAX_VALUE)
+            min = 0;
+
+        return min;
     }
 
     public int maxSubArrayEqualsK(int k, int[] nums) {
@@ -74,12 +84,13 @@ public class SlidingWindow {
 
         int max = Integer.MIN_VALUE;
         int accumulation = 1;
-        for(int i = 1; i < nums.length; ++i) {
-            accumulation += nums[i];
-            if(nums[i] < nums[i - 1]) {
+        for(int i = 1; i < nums.length; ++ i) {
+            if(nums[i] <= nums[i - 1]) {
                 max = Math.max(max, accumulation);
                 accumulation = 0;
             }
+            accumulation ++;
+
         }
 
         return max;
@@ -90,12 +101,12 @@ public class SlidingWindow {
             return 0;
 
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        int max = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
         int i, j;
         i = j = 0;
         while(j < input.length()) {
             Character currChar = input.charAt(j);
-            while(!map.containsKey(currChar)) {
+            while(map.containsKey(currChar)) {
                 map.remove(input.charAt(i));
                 i++;
             }
@@ -108,11 +119,31 @@ public class SlidingWindow {
     }
 
     public int pairsWithGivenSumTwoArrays(int sum, int[] arr1, int[] arr2) {
-        return 1;
+        if(arr1.length == 0 || arr2.length == 0) {
+            return 0;
+        }
+
+        HashMap<Integer, Integer> arr2_map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> res = new HashMap<Integer, Integer>();
+        for(int i = 0; i < arr2.length; ++i) {
+            arr2_map.put(arr2[i], i);
+        }
+
+        for(int i = 0 ; i < arr1.length; ++i) {
+            int remain = sum - arr1[i];
+            if(arr2_map.containsKey(remain)) {
+                res.put(i, arr2_map.get(remain));
+            }
+        }
+
+        return res.size();
     }
 
     public int binarySubWithSum(int S, int[] arr) {
-        return  1;
+        if(arr.length == 0)
+            return 0;
+
+
     }
 
     public int[] allAnagramsInString(String s, String p) {
@@ -128,7 +159,6 @@ public class SlidingWindow {
     }
 
     public int[] substringWithConcatenationOfAllWords(String S, String[] words) {
-
         return null;
     }
 
@@ -137,7 +167,6 @@ public class SlidingWindow {
     }
 
     public int longestSubstring2UniqueCharacters(String S) {
-
         return 1;
     }
 
