@@ -115,6 +115,9 @@ public class SlidingWindowTest {
         k = -5;
         assertEquals(algorithm.getSlidingWindow().maxSubArrayEqualsK(k, nums2), 5);
 
+        int[] nums3 = {3, -7, 8, 2, 9, -1};
+        k = 10;
+        assertEquals(algorithm.getSlidingWindow().maxSubArrayEqualsK(k, nums3), 3);
     }
 
     /**
@@ -163,6 +166,9 @@ public class SlidingWindowTest {
         assertEquals(algorithm.getSlidingWindow().pairsWithGivenSumTwoArrays(k, arr3, arr4), 3);
     }
 
+    /**
+     *  In an array of 1s and 0s, how many non-empty subarrays have sum S?
+     */
     @Test
     public void binarySubWithSum() {
         Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
@@ -226,11 +232,11 @@ public class SlidingWindowTest {
         Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
 
         String S = "abcbbbbcccbdddadacb";
-        //assertArrayEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S), new String[]{"bcbbbbcccb"});
-        assertEquals(algorithm.getSlidingWindow().longestSubstring2UniqueCharacters(S), "bcbbbbcccb".length());
+        int K = 1;
 
-        S = "aabbcc";
-        //assertArrayEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S), new String[]{"aabb" , "bbcc"});
 
     }
+
+    @Test
+    public void
 }
