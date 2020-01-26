@@ -231,12 +231,57 @@ public class SlidingWindowTest {
     public void longestSubstringAtMostKDistinctCharacterTest() {
         Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
 
-        String S = "abcbbbbcccbdddadacb";
-        int K = 1;
+        String S = "eceba";
+        int k = 3;
+        String actual = "eceb";
+        assertEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S, k), actual);
 
+        S = "WORLD";
+        actual = "WORL";
+        k = 4;
+        assertEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S, k), actual);
 
+        S = "aabbcc";
+        k = 1;
+        actual = "aa";
+        assertEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S, k), actual);
+
+        S = "aabbcc";
+        k = 2;
+        actual = "aabb";
+        assertEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S, k), actual);
+
+        S = "aabbcc";
+        k = 3;
+        actual = "aabbcc";
+        assertEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S, k), actual);
+
+        S = "aaabbb";
+        k = 3;
+        actual = "aaabbb";
+        assertEquals(algorithm.getSlidingWindow().longestSubstringAtMostKDistinctCharacters(S, k), actual);
     }
 
     @Test
-    public void
+    public void longestSubstring2UniqueCharactersTest() {
+        Algorithm algorithm = Algorithm.Algorithm("slidingWindow");
+
+        String s = "aabbccddc";
+        String actual = "ccddc";
+        assertEquals(algorithm.getSlidingWindow().longestSubstring2UniqueCharacters(s), actual.length());
+
+        s = "aabacbeeeebeaabb";
+        actual = "beeeebe";
+        assertEquals(algorithm.getSlidingWindow().longestSubstring2UniqueCharacters(s), actual.length());
+
+        s = "aaaaaa";
+        actual ="";
+        assertEquals(algorithm.getSlidingWindow().longestSubstring2UniqueCharacters(s), actual.length());
+
+        s= "aabcd";
+        actual = "aab";
+        assertEquals(algorithm.getSlidingWindow().longestSubstring2UniqueCharacters(s), actual.length());
+
+    }
+
 }

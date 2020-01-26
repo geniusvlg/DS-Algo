@@ -1,8 +1,12 @@
 package dek.algorithm.two_pointers;
 
+import javax.print.DocFlavor;
 import java.util.*;
 
 public class SlidingWindow {
+    /**
+     * return res.stream().mapToInt(e -> e).toArray();
+     */
 
     public void printResult(int startIndex, int length, int[] nums) {
         for(int i = 0; i < length; ++i)
@@ -54,6 +58,11 @@ public class SlidingWindow {
         return min;
     }
 
+    /**
+     * Using prefix backward
+     * @param k
+     * @param nums
+     */
     public int maxSubArrayEqualsK(int k, int[] nums) {
         if(nums == null || nums.length == 0)
             return 0;
@@ -139,38 +148,200 @@ public class SlidingWindow {
         return res.size();
     }
 
+    /**
+     * Using prefix forward
+     * @param S
+     * @param arr
+     * @return numbers of sub array
+     */
     public int binarySubWithSum(int S, int[] arr) {
-        if(arr.length == 0)
-            return 0;
+       if(arr.length == 0)
+           return 0;
+
+       int res = 0;
+       int sum = 0;
 
 
+         HashMap<Integer, Integer> count = new HashMap<Integer, Integer>();
+        int[] prefix = new int[arr.length + 1];
+        for(int i = 0; i < arr.length; ++i)
+            prefix[i + 1] = prefix[i] + arr[i];
+
+        for(int x: prefix) {
+            res += count.getOrDefault(x, 0);
+            count.put(x + S, count.getOrDefault(x + S, 0) + 1);
+        }
+
+       return res;
     }
 
+    /**
+     * @param s
+     * @param p
+     * @return positions of all anagrams of p in s else return null
+     */
     public int[] allAnagramsInString(String s, String p) {
-        return null;
+        if(s.length() < p.length())
+            return null;
+
+        int[] map_p = new int[26];
+        int[] map_s = new int[26];
+
+        for(int i = 0; i < p.length(); ++i) {
+            map_p[p.charAt(i) - 'a'] ++;
+            map_s[s.charAt(i) - 'a'] ++;
+        }
+
+        int i, j;
+        i = 0;
+        j = p.length();
+        j = p.length();
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        while(j < s.length()) {
+            if(isMatch(map_p, map_s))
+                res.add(i);
+
+            map_s[s.charAt(j) - 'a'] ++;
+            map_s[s.charAt(i) - 'a'] --;
+            i ++;
+            j ++;
+        }
+
+        if(isMatch(map_p, map_s))
+            res.add(i);
+
+        return res.stream().mapToInt(e -> e).toArray();
     }
 
     public boolean isMatch(int[] arr1, int[] arr2) {
-        return false;
+        for(int i = 0 ; i < arr1.length; ++i) {
+            if(arr1[i] != arr2[i])
+                return false;
+        }
+        return true;
     }
 
     public boolean permutationInString(String P, String S) {
-       return false;
+        if(P.length() > S.length()) {
+            return false;
+        }
+
+        int[] map_P = new int[26];
+        int[] map_S = new int[26];
+
+        for(int i = 0; i < P.length(); ++i) {
+            map_P[P.charAt(i) - 'a'] ++;
+            map_S[S.charAt(i) - 'a'] ++;
+        }
+
+        int i = 0;
+        int j = P.length();
+        while(j < S.length()) {
+            if(isMatch(map_P, map_S))
+                return true;
+
+            map_S[S.charAt(j) - 'a'] ++;
+            map_S[S.charAt(i) - 'a'] --;
+            j ++;
+            i ++;
+        }
+
+        if(isMatch(map_P, map_S))
+            return true;
+
+        return false;
     }
 
     public int[] substringWithConcatenationOfAllWords(String S, String[] words) {
         return null;
     }
 
-    public String[] longestSubstringAtMostKDistinctCharacters(String S) {
-       return null;
+    public String longestSubstringAtMostKDistinctCharacters(String S, int K) {
+        if(S == null || S.length() == 0 || K == 0) {
+            return "";
+        }
+
+        String temp = "";
+        String ans = "";
+        HashMap<Character, Integer> dupCount = new HashMap<Character, Integer>();
+        int i, j;
+        i = j = 0;
+        while(j < S.length()) {
+            Character currChar = S.charAt(j);
+            dupCount.put(currChar, dupCount.getOrDefault(currChar, 0) + 1);
+            while(dupCount.size() > K) {
+                Character dupChar = S.charAt(i);
+                dupCount.put(dupChar, dupCount.getOrDefault(dupChar, 0) - 1);
+                i ++;
+
+                if(dupCount.get(dupChar) == 0)
+                    dupCount.remove(dupChar);
+
+                temp = temp.substring(1);
+            }
+
+            temp += currChar;
+            if(temp.length() > ans.length()) {
+                ans =temp;
+            }
+            j ++;
+        }
+
+        return ans;
     }
 
     public int longestSubstring2UniqueCharacters(String S) {
-        return 1;
+        if(S == null || S.length() == 0)
+            return 0;
+
+        HashMap<Character, Integer> duplicat_count = new HashMap<Character, Integer>();
+        int i , j, max;
+        i = j = 0;
+        max = 0;
+        while(j < S.length()) {
+            Character currChar = S.charAt(j);
+            duplicat_count.put(currChar, duplicat_count.getOrDefault(currChar, 0) + 1);
+            while(duplicat_count.size() > 2) {
+                Character dupChar = S.charAt(i);
+                duplicat_count.put(dupChar, duplicat_count.getOrDefault(dupChar, 0) - 1);
+                i ++;
+
+                if(duplicat_count.get(dupChar) == 0)
+                    duplicat_count.remove(dupChar);
+            }
+
+            if(duplicat_count.size() == 2)
+                max = Math.max(max, j - i + 1);
+            j ++;
+        }
+
+        return max;
     }
 
     public int pairsHaveDifferenceK(int[] arr, int k) {
-        return 1;
+        if(arr.length == 0 || arr == null)
+            return 0;
+
+       int res = 0;
+       int n = arr.length;
+       int positiveDiff;
+       int negativeDiff;
+       Set<Integer> set = new HashSet<Integer>();
+       for(int i = 0; i < n; ++i) {
+           positiveDiff = arr[i] + k;
+           negativeDiff = Math.abs(arr[i] - k);
+           if(set.contains(positiveDiff)) {
+               res ++;
+           }
+
+           if(set.contains(negativeDiff)) {
+               res ++;
+           }
+
+           set.add(arr[i]);
+
+       }
+
+        return res;
     }
 }

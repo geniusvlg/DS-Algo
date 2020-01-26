@@ -9,6 +9,11 @@ public class ArrayAndString {
         return true;
     }
 
+    /**
+     * Check if two strings are permutation of each others (differs from finding permutation in string s)
+     * @param a
+     * @param b
+     */
     public boolean checkPermutation(String a, String b) {
         return true;
     }
