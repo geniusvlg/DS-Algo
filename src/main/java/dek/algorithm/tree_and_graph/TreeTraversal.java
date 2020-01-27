@@ -4,7 +4,7 @@ public class TreeTraversal {
 
     Node root;
 
-    TreeTraversal {
+    TreeTraversal() {
         root = null;
     }
 
