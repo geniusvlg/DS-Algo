@@ -1,4 +1,4 @@
 package dek.algorithm.caching;
 
-public class LFU {
+public class LRUCache {
 }
