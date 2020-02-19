@@ -6,7 +6,7 @@ public class LFUCache {
 
     HashMap<Integer, Integer> values = new HashMap(); // Key, Value
 
-    HashMap<> count = new HashMap();
+    HashMap<Integer, Integer> count = new HashMap();
     public LFUCache(int capacity) {
 
     }
@@ -19,7 +19,7 @@ public class LFUCache {
         try {
 
         } catch (Exception e) {
-            return e;
+
         }
     }
 }
