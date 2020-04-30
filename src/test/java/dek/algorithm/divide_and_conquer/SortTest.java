@@ -1,9 +1,9 @@
-package dek.algorithm.divide.and.conquer;
+package dek.algorithm.divide_and_conquer;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class SortsTest {
+public class SortTest {
     int[] nums = {38, 27, 43, 3, 9, 82, 10};
 
     @Test

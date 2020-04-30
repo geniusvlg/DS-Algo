@@ -1,4 +1,4 @@
-package dek.algorithm.divide.and.conquer;
+package dek.algorithm.divide_and_conquer;
 
 public class MergeSort {
 
